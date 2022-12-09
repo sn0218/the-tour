@@ -1,0 +1,39 @@
+doctype html
+html
+  block head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' href='/styles/style.css')
+    link(rel='icon' type='image/x-icon' href='/img/favicon.ico')
+    script(src='https://unpkg.com/axios/dist/axios.min.js')
+    script(src='/js/logout.js')
+    script(type='module') import { showAlert } from '/js/alert.js';
+    link(href="https://fonts.googleapis.com/css?family=Lato:300,300i,700" rel="stylesheet")
+
+    title TheTour Travel #{title}
+
+  block body
+      include header
+
+      //-content
+      block content
+        h1 This is a placeholder heading 
+      link(rel='stylesheet' href='https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css')
+      script(src='https://unpkg.com/flowbite@1.5.4/dist/flowbite.js')
+
+      //-footer
+      include footer
+      
+
+
+
+
+
+
+
+
+
+
+
+
+

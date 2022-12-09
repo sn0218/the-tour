@@ -1,0 +1,79 @@
+extends base
+
+mixin sideBarItem(link, text, icon)
+  li
+    a.flex.items-center.p-2.text-base.font-normal.text-gray-500.rounded-lg(href=`${link}` class='hover:bg-gray-100')
+      svg.w-6.h-6.text-gray-500.transition.duration-75(aria-hidden='true' class='group-hover:text-gray-900' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+        use(xlink:href=`img/icons.svg#icon-${icon}`)
+      span.font-medium.ml-3 #{text}  
+
+mixin bill(tour, date, price, status)
+  - const payStatus = ['Paid', 'Unpaid']
+  - const bookingDate = date.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) 
+  - const bookingTime = date.toLocaleTimeString()
+  tr.bg-white.border-b(class='hover:bg-gray-50')
+    td.p-4.w-4
+      .flex.items-center
+        input#checkbox-table-search-1.w-4.h-4.text-blue-600.bg-gray-100.rounded.border-gray-300(type='checkbox' class='focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600')
+        label.sr-only(for='checkbox-table-search-1') checkbox
+    th.py-4.px-6.font-medium.text-gray-900.whitespace-nowrap(scope='row' class='dark:text-white')
+      | #{tour.name}
+    td.py-4.px-6
+      | #{bookingDate} #{bookingTime}
+    td.py-4.px-6
+      | $ #{price}
+    if status === true
+      td.py-4.px-6
+        .flex.items-center
+          .rounded-full.bg-green-400.mr-2(class='h-2.5 w-2.5')
+          |  #{payStatus[0]}
+    else 
+      .flex.items-center
+          .rounded-full.bg-red-500.mr-2(class='h-2.5 w-2.5')
+          |  #{payStatus[1]}
+
+           
+block content
+  main.main 
+    .container.mx-auto.py-6
+        .flex.flex-no-wrap.shadow.mx-4
+          .border-r.border-gray-200
+            aside.w-64(aria-label='Sidebar')
+              .overflow-y-auto.py-6.px-6
+                ul.space-y-2
+                  +sideBarItem('/mypage', 'Settings', 'settings')
+                  +sideBarItem('/bookings', 'My bookings', 'briefcase')
+                  +sideBarItem('/my-reviews', 'My review', 'star')
+                  +sideBarItem('/billing', 'Billing', 'credit-card')
+                - if (user.role === 'admin')
+                  ul.pt-4.mt-4.space-y-2.border-t.border-gray-200
+                    +sideBarItem('#', 'Manage tours', 'map')
+                    +sideBarItem('#', 'Manage users', 'users')
+                    +sideBarItem('#', 'Manage reviews', 'star')
+                    +sideBarItem('#', 'Manage bookings', 'briefcase')
+
+          .flex-auto.mb-8.mx-4   
+            #tour-section.h3.mb-4.text-3xl.font-extrabold.text-gray-900.mx-4.mt-8 My Billing Records
+            #fullWidthTabContent.border-t.border-gray-200.mx-4
+            .overflow-x-auto.relative.shadow.mx-4.mt-8(class='sm:rounded-lg')
+              table.w-full.text-sm.text-left.text-gray-500
+                thead.text-xs.text-gray-700.uppercase.bg-gray-50
+                  tr
+                    th.p-4(scope='col')
+                      .flex.items-center
+                        input#checkbox-all-search.w-4.h-4.text-blue-600.bg-gray-100.rounded.border-gray-300(type='checkbox' class='focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600')
+                        label.sr-only(for='checkbox-all-search') checkbox
+                    th.py-3.px-6(scope='col')
+                      | Purchase Tour
+                    th.py-3.px-6(scope='col')
+                      | Billing Date and Time
+                    th.py-3.px-6(scope='col')
+                      | Purchase Amount
+                    th.py-3.px-6(scope='col')
+                      | Status
+                
+                tbody
+                    each booking in bookings
+                      +bill(booking.tour, booking.createdAt, booking.price, booking.paid)
+                
+

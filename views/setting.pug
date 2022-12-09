@@ -1,0 +1,47 @@
+section
+  .flex.flex-col.items-center.justify-center.px-6.py-8
+    h2.mb-5.text-2xl.font-bold.text-gray-700 Profile
+    .w-full.max-w-2xl.bg-white.border.border-gray-100.rounded-lg.shadow
+      .flex.justify-end.px-4.pt-4
+      .flex.flex-col.items-center.pb-10
+
+        img#user-photo.w-24.h-24.mb-3.rounded-full.shadow-lg(src=`/img/users/${user.photo}` alt='profile picture')
+        h5#profile-username.mb-1.text-xl.font-medium.text-gray-900=user.username
+        span.text-sm.text-gray-500=user.role
+
+        .flex.mt-4.space-x-3(class='md:mt-6')
+          form.form.form-photo
+            .form__group.form__photo-upload
+              label.block.mb-2.text-sm.font-medium.text-gray-900(for='file_input') Upload file
+              input.form__upload.block.w-full.text-sm.text-gray-900.border.border-gray-300.rounded-lg.cursor-pointer.bg-gray-50(type='file' accept='image/*' id='photo' name='photo')
+              p#file_input_help.mt-1.text-sm.text-gray-500 SVG, PNG, JPG or GIF.
+
+            .form__group.right.flex.justify-center.mt-6
+              button.items-center.px-4.py-2.text-sm.font-medium.text-center.text-white.bg-blue-700.rounded-lg(href='#' class='hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300') Change Profile Picture
+
+      .flex.justify-center.pt-4.mt-4.space-y-2.border-t.border-gray-200
+        h2.text-xl.p-3.font-bold.font-medium.text-gray-700 Account Setting
+      form.form-user-data.mt-4.p-6.space-y-4(class='lg:mt-5 md:space-y-5' action='#')
+        div
+          label.block.mb-2.text-sm.font-medium.text-gray-900(for='username' class='dark:text-white') Username
+          input#name.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='text' name='username' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5' value=`${user.username}` required='')
+        div
+          label.block.mb-2.text-sm.font-medium.text-gray-900(for='email' class='dark:text-white') Email Address
+          input#email.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='email' name='email' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5' value=`${user.email}` required='')
+        .flex.justify-end 
+          button.text-white.text-sm.font-medium.bg-gray-700.rounded-lg.text-.px-5.mr-2.mb-2(type='submit' class='hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 py-2.5') Save Settings
+
+      .flex.justify-center.pt-4.mt-4.space-y-2.border-t.border-gray-200
+        h2.text-xl.p-3.font-bold.font-medium.text-gray-700 Change Password
+      form.form-user-password.mt-4.p-6.space-y-4(class='lg:mt-5 md:space-y-5' action='#')
+        div
+          label.block.mb-2.text-sm.font-medium.text-gray-900(for='password' class='dark:text-white') Current Password
+          input#password-current.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='password' name='password' placeholder='••••••••' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5' required=''  minlength='8')
+        div
+          label.block.mb-2.text-sm.font-medium.text-gray-900(for='password' class='dark:text-white') New Password
+          input#password.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='password' name='password' placeholder='••••••••' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5' required=''  minlength='8')
+        div
+          label.block.mb-2.text-sm.font-medium.text-gray-900(for='confirm-password' class='dark:text-white') Confirm password
+          input#password-confirm.bg-gray-50.border.border-gray-300.text-gray-900.rounded-lg.block.w-full(type='password' name='confirm-password' placeholder='••••••••' class='sm:text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5' required='' minlength='8')
+        .flex.justify-end 
+          button.btn--save-password.text-white.text-sm.font-medium.bg-gray-700.rounded-lg.text-.px-5.mr-2.mb-2(type='submit' class='hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 py-2.5') Save Password

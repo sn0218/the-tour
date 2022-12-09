@@ -1,0 +1,38 @@
+extends base
+
+block append head
+    script(src='/js/updateAccount.js')
+
+mixin sideBarItem(link, text, icon)
+  li
+    a.flex.items-center.p-2.text-base.font-normal.text-gray-500.rounded-lg(href=`${link}` class='hover:bg-gray-100')
+      svg.w-6.h-6.text-gray-500.transition.duration-75(aria-hidden='true' class='group-hover:text-gray-900' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+        use(xlink:href=`img/icons.svg#icon-${icon}`)
+      span.font-medium.ml-3 #{text}    
+
+block content
+    main.main
+      .container.mx-auto.py-6
+        .flex.flex-no-wrap.shadow.mx-4
+          .border-r.border-gray-200
+            aside.w-64(aria-label='Sidebar')
+              .overflow-y-auto.py-6.px-6
+                ul.space-y-2
+                  +sideBarItem('/mypage', 'Settings', 'settings')
+                  +sideBarItem('/bookings', 'My bookings', 'briefcase')
+                  +sideBarItem('/my-reviews', 'My review', 'star')
+                  +sideBarItem('/billing', 'Billing', 'credit-card')
+                - if (user.role === 'admin')
+                  ul.pt-4.mt-4.space-y-2.border-t.border-gray-200
+                    +sideBarItem('#', 'Manage tours', 'map')
+                    +sideBarItem('#', 'Manage users', 'users')
+                    +sideBarItem('#', 'Manage reviews', 'star')
+                    +sideBarItem('#', 'Manage bookings', 'briefcase')
+
+          .flex-auto
+            include setting
+                  
+
+
+                
+              

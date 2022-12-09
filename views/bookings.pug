@@ -1,0 +1,98 @@
+extends base
+
+block append head
+  script(src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch")
+  script(src='/js/booking.js')
+
+mixin sideBarItem(link, text, icon)
+  li
+    a.flex.items-center.p-2.text-base.font-normal.text-gray-500.rounded-lg(href=`${link}` class='hover:bg-gray-100')
+      svg.w-6.h-6.text-gray-500.transition.duration-75(aria-hidden='true' class='group-hover:text-gray-900' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+        use(xlink:href=`img/icons.svg#icon-${icon}`)
+      span.font-medium.ml-3 #{text}  
+
+mixin booking(booking)
+  - const payStatus = ['Paid', 'Unpaid']
+  - const bookingDate = booking.createdAt.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) 
+  - const bookingTime = booking.createdAt.toLocaleTimeString()
+  - const startDate = booking.tour.startDates[0].toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) 
+  tr.bg-white.border-b(class='hover:bg-gray-50')
+    td.p-4.w-4
+      .flex.items-center
+        input.checkbox.w-4.h-4.text-blue-600.bg-gray-100.rounded.border-gray-300(data-booking-id=`${booking.id}` data-tour-name=`${booking.tour.name}` type='checkbox' class='focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600')
+        label.sr-only(for='checkbox-table-search-1') checkbox
+    th.py-4.px-6.font-medium.text-gray-900.whitespace-nowrap(scope='row' class='dark:text-white')
+      | #{booking.tour.name}
+    td.py-4.px-6
+      | #{bookingDate} #{bookingTime}
+    td.py-4.px-6
+      | $ #{booking.price}
+    td.py-4.px-6
+      | #{startDate}
+    td.py-4.px-6
+      | #{booking.tour.startLocation.description}
+      
+    
+block content
+  main.main 
+    .container.mx-auto.py-6
+        .flex.flex-no-wrap.shadow.mx-4
+          .border-r.border-gray-200
+            aside.w-64(aria-label='Sidebar')
+              .overflow-y-auto.py-6.px-6
+                ul.space-y-2
+                  +sideBarItem('/mypage', 'Settings', 'settings')
+                  +sideBarItem('/bookings', 'My bookings', 'briefcase')
+                  +sideBarItem('/my-reviews', 'My review', 'star')
+                  +sideBarItem('/billing', 'Billing', 'credit-card')
+                - if (user.role === 'admin')
+                  ul.pt-4.mt-4.space-y-2.border-t.border-gray-200
+                    +sideBarItem('#', 'Manage tours', 'map')
+                    +sideBarItem('#', 'Manage users', 'users')
+                    +sideBarItem('#', 'Manage reviews', 'star')
+                    +sideBarItem('#', 'Manage bookings', 'briefcase')
+
+          .flex-auto.mb-8.mx-4     
+            #tour-section.h3.mb-4.text-3xl.font-extrabold.text-gray-900.mx-4.mt-8 My Bookings
+            #fullWidthTabContent.border-t.border-gray-200.mx-4
+            .overflow-x-auto.relative.shadow.mx-4.mt-8(class='sm:rounded-lg')
+              table.w-full.text-sm.text-left.text-gray-500
+                thead.text-xs.text-gray-700.uppercase.bg-gray-50
+                  tr
+                    th.p-4(scope='col')
+                      .flex.items-center
+                        input#checkbox-all-search.w-4.h-4.text-blue-600.bg-gray-100.rounded.border-gray-300(type='checkbox' class='focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600')
+                        label.sr-only(for='checkbox-all-search') checkbox
+                    th.py-3.px-6(scope='col')
+                      | Tour name
+                    th.py-3.px-6(scope='col')
+                      | Booking Date and Time
+                    th.py-3.px-6(scope='col')
+                      | Booking Price
+                    th.py-3.px-6(scope='col')
+                      | Start Date
+                    th.py-3.px-6(scope='col')
+                      | Start Location
+                tbody
+                    each booking in bookings
+                      +booking(booking)
+            
+            .flex.justify-end.items-center.mx-auto.mr-4.mt-8
+              button.cancel-btn.block.text-white.bg-red-600.font-medium.rounded-lg.text-sm.px-5.text-center.mr-2(class='hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 py-2.5' type='button' data-modal-toggle='popup-modal')
+                      | Cancel 
+              #popup-modal.fixed.top-0.left-0.right-0.z-50.hidden.p-4.overflow-x-hidden.overflow-y-auto.h-modal(tabindex='-1' class='md:inset-0 md:h-full')
+                .relative.w-full.h-full.max-w-md(class='md:h-auto')
+                  .relative.bg-white.rounded-lg.shadow(class='dark:bg-gray-700')
+                    button.absolute.top-3.text-gray-400.bg-transparent.rounded-lg.text-sm.ml-auto.inline-flex.items-center(type='button' class='right-2.5 hover:bg-gray-200 hover:text-gray-900 p-1.5 dark:hover:bg-gray-800 dark:hover:text-white' data-modal-toggle='popup-modal')
+                      svg.w-5.h-5(aria-hidden='true' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+                        path(fill-rule='evenodd' d='M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z' clip-rule='evenodd')
+                      span.sr-only Close modal
+                    .p-6.text-center
+                      svg.mx-auto.mb-4.text-gray-400.w-14.h-14(aria-hidden='true' class='dark:text-gray-200' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg')
+                        path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z')
+                      h3#modal-text.mb-5.text-lg.font-normal.text-gray-500(class='dark:text-gray-400') Are you sure you want to cancel this booking?
+                      button.booking-cancel-btn.text-white.bg-red-600.font-medium.rounded-lg.text-sm.inline-flex.items-center.px-5.text-center.mr-2(data-modal-toggle='popup-modal' type='button' class='hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 py-2.5')
+                        | Yes, I'm sure
+                      button.text-gray-500.bg-white.rounded-lg.border.border-gray-200.text-sm.font-medium.px-5(data-modal-toggle='popup-modal' type='button' class='hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 py-2.5 hover:text-gray-900 focus:z-10') No, cancel
+                
+

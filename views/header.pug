@@ -1,0 +1,53 @@
+mixin navItem(text, link)
+  li
+    a.block.py-2.pl-3.pr-4.text-gray-700.rounded.text-lg.font-bold(href=`${link}` class='hover:underline  md:hover:bg-transparent md:hover:text-amber-500 md:p-0') #{text}  
+
+header.header
+  nav.bg-white.border-gray-200.px-2.rounded(class='sm:px-4 py-2.5')
+  .container.flex.flex-wrap.items-center.justify-between.mx-auto.px-4
+    a.flex.items-center(href='/')
+      img.h-6.mr-3(src='/img/logo.png' class='sm:h-9' alt='Logo')
+      span.self-center.text-xl.font-semibold.whitespace-nowrap The Tour
+    if user
+      .flex.items-center(class='md:order-2')
+        button#user-menu-button.flex.mr-3.text-sm.bg-gray-800.rounded-full(type='button' class='md:mr-0 focus:ring-4 focus:ring-gray-300' aria-expanded='false' data-dropdown-toggle='user-dropdown' data-dropdown-placement='bottom')
+          span.sr-only Open user menu
+          img#user-photo-nav.w-10.h-10.rounded-full(src=`/img/users/${user.photo}` alt='user_profile_pic')
+        a(href='/mypage')
+          strong#nav-username.block.text-sm.text-gray-900.pr-3.pl-3=user.username  
+        // Dropdown menu
+        #user-dropdown.z-50.hidden.my-4.text-base.list-none.bg-white.divide-y.divide-gray-100.rounded.shadow
+          .px-4.py-3
+            span.block.text-sm.text-gray-900=user.username
+            span.block.text-sm.font-medium.text-gray-500.truncate=user.email
+          ul.py-1(aria-labelledby='user-menu-button')
+            li
+              a.block.px-4.py-2.text-sm.text-gray-700(href='/mypage' class='hover:bg-gray-100') Settings
+            li
+              a.block.px-4.py-2.text-sm.text-gray-700.nav__el.nav__el--logout(class='hover:bg-gray-100') Sign out
+        button.inline-flex.items-center.p-2.ml-1.text-sm.text-gray-500.rounded-lg(data-collapse-toggle='mobile-menu-2' type='button' class='md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200' aria-controls='mobile-menu-2' aria-expanded='false')
+          span.sr-only Open main menu
+          svg.w-6.h-6(aria-hidden='true' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+            path(fill-rule='evenodd' d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clip-rule='evenodd')
+      #mobile-menu-2.items-center.justify-between.hidden.w-full(class='md:flex md:w-auto md:order-1')
+        ul.flex.flex-col.p-4.mt-4.border.border-gray-100.rounded-lg.bg-gray-50(class='md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white')
+          +navItem("Home", '/')
+          +navItem("Tours", '/#tour-section')
+          +navItem("About", '#')
+          +navItem("Contact", '#')
+    else
+      .flex.items-center(class='md:order-2')
+      
+        a.nav__item.text-gray-600.font-semibold(href='/register' class='hover:underline') Sign up
+        a.nav__item.text-gray-600.font-semibold.pl-5.mr-2(href='/login' class='hover:underline') Login
+
+        button.inline-flex.items-center.p-2.ml-1.text-sm.text-gray-500.rounded-lg(data-collapse-toggle='mobile-menu-2' type='button' class='md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200' aria-controls='mobile-menu-2' aria-expanded='false')
+          span.sr-only Open main menu
+          svg.w-6.h-6(aria-hidden='true' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg')
+            path(fill-rule='evenodd' d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clip-rule='evenodd')
+      #mobile-menu-2.items-center.justify-between.hidden.w-full(class='md:flex md:w-auto md:order-1')
+        ul.flex.flex-col.p-4.mt-4.border.border-gray-100.rounded-lg.bg-gray-50(class='md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white')
+          +navItem("Home", '/')
+          +navItem("Tours", '#tour-section')
+          +navItem("About", '#')
+          +navItem("Contact", '#')
