@@ -7,6 +7,33 @@
 
 The Tour is a fully-fledged web application designed for persons who love travelling and provides an online platform for them to explore and book sightseeing tours. A sightseeing tour takes tourists on a themed adventure by visiting different locations. A visiting user who does not have an account on the app can view all the tours and detailed information about each tour. Once registered or logged in, an authenticated user can book any tour that they desire. An authenticated user can also write a review and give a rating to the tour. 
 
+## Getting Started 
+Your local machine must be installed with Node.js. If not, download LTS version in https://nodejs.org/en/.  
+Navigate to the root file of the application in the command-line interface. The root folder name is “tour_app”.  
+To run the application in a local machine, run the following commands in the root folder path.
+
+```
+// install dependencies
+npm install
+
+// install nodemon
+npm install -g nodemon
+
+// run the application (development environment)
+npm run
+
+// run the application (production environment) (optional)
+npm run start -prod
+
+// debug the application (optional)
+ndb server.js
+
+// setting up eslint and prettier (optional)
+npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y  eslint-plugin-react --save-dev
+
+```
+The application will be available on http://127.0.0.1:3000/.
+
 ## Tech Stack
 -   JavaScript
 -   Node.js
@@ -33,5 +60,14 @@ The Tour is a fully-fledged web application designed for persons who love travel
 
 ## API endpoints
 ![image](https://user-images.githubusercontent.com/48129546/223294239-47b9d420-c1db-47e7-b6fb-4acaab4cbfe2.png)
+
+## Database
+The data model consists of 4 schemas: tours, reviews, bookings and users. Tours have a one-to-many relationship with bookings and reviews. Users also have a one-to-many relationship with reviews and bookings. Each schema maps to a MongoDB collection. 
+
+### Data model
+![image](https://user-images.githubusercontent.com/48129546/223294454-2f6b28ab-80c4-44a6-8147-c890165d855b.png)
+
+
+
 
 ## Contained Files
