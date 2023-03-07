@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// rate limiter middleware: 100 requests per hr
+// rate limiter middleware: 1000 requests per hr
 const limiter = rateLimit({
   max: 1000,
   windowMs: 60 * 60 * 1000,
