@@ -3,6 +3,7 @@
 ![image](https://user-images.githubusercontent.com/48129546/223292527-6614f040-1813-4a5c-ae28-11d2c7c662ab.png)
 ![image](https://user-images.githubusercontent.com/48129546/223292877-d95ed0c1-e209-4d48-b809-1162a5e2a980.png)
 ![image](https://user-images.githubusercontent.com/48129546/223294911-c5cd15de-3840-4f63-a4c6-623572bd6ac6.png)
+![image](https://user-images.githubusercontent.com/48129546/223295637-3710f3f4-79c0-45a8-8d5a-9b5ff4ca32ea.png)
 ![image](https://user-images.githubusercontent.com/48129546/223294952-f3f9cce6-9159-4bdf-af53-6b1a71157513.png)
 ![image](https://user-images.githubusercontent.com/48129546/223294960-163685d4-8f2f-447d-a38a-72cd2063266a.png)
 ![image](https://user-images.githubusercontent.com/48129546/223294968-d19bea2f-afd8-4183-9755-3b79d1e7746f.png)
@@ -47,6 +48,11 @@ The application will be available on http://127.0.0.1:3000/.
 -   MongoDB Atlas
 -   Pug Template engine
 -   Flowbite Library
+
+
+## Architecture
+![image](https://user-images.githubusercontent.com/48129546/223295704-24319ac8-1a50-456e-b915-2de3eb41f2f0.png)
+
 
 
 ## Functions and Features
@@ -94,4 +100,39 @@ https://documenter.getpostman.com/view/23277889/2s8YsxuB4J
 
 
 ## Contained Files
+### Main folders
+- ./controller: contains all files of control logic
+- ./models: contain all files of MongoDB schema
+- ./routes: contain all routing files
+- ./views: contain all pug templates
+- ./dev-data: contain all data for development
+- ./public: contain all statics files including image, CSS stylesheet and frontend JavaScript
+
+|  Path | Component function  |
+./controller/authController.js	Handle authentication logic
+./controller/errorController.js	Handle error controller
+./controller/reviewController.js	Handle review logic 
+./controller/tourBookingController.js	Handle tour booking logic 
+./controller/tourController.js	Handle tour logic
+./controller/userController.js	Handle user logic
+./controller/viewController.js	Handle the logic of webpage rendering
+./controller/handlerFactory.js	Handle the factory design pattern
+./models/bookingModel.js	Define booking schema
+./models/reviewModel.js	Define review schema
+./models/tourModel.js	Define tour schema
+./models/userModel.js	Define user schema
+./routes/reviewRoutes.js	Define routes and endpoints for review
+./routes/tourBookingRoutes.js	Define routes and endpoints for booking
+./routes/tourRoutes.js	Define routes and endpoints for tour
+./routes/userRoutes.js	Define routes and endpoints for user
+./routes/viewRoutes.js	Define routes and endpoints for frontend view
+./utils/appError.js	Define an extended error class
+./utils/apiFeatures.js	Define an APIFeatures class to handle URL query and generate MongoDB query string
+./utils/catchAsync.js	Handle asynchronous promise rejection error
+./utils/email.js	Define an email class 
+./app.js	Set up middlewares and Express router 
+./server.js	Set up the web server and database connection
+./config.env	Store configuration variables
+
+
 
