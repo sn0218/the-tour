@@ -112,30 +112,30 @@ https://documenter.getpostman.com/view/23277889/2s8YsxuB4J
 | ----------- | ----------- |
 | Header      | Title       |
 | Paragraph   | Text        |
-./controller/authController.js	Handle authentication logic
-./controller/errorController.js	Handle error controller
-./controller/reviewController.js	Handle review logic 
-./controller/tourBookingController.js	Handle tour booking logic 
-./controller/tourController.js	Handle tour logic
-./controller/userController.js	Handle user logic
-./controller/viewController.js	Handle the logic of webpage rendering
-./controller/handlerFactory.js	Handle the factory design pattern
-./models/bookingModel.js	Define booking schema
-./models/reviewModel.js	Define review schema
-./models/tourModel.js	Define tour schema
-./models/userModel.js	Define user schema
-./routes/reviewRoutes.js	Define routes and endpoints for review
-./routes/tourBookingRoutes.js	Define routes and endpoints for booking
-./routes/tourRoutes.js	Define routes and endpoints for tour
-./routes/userRoutes.js	Define routes and endpoints for user
-./routes/viewRoutes.js	Define routes and endpoints for frontend view
-./utils/appError.js	Define an extended error class
-./utils/apiFeatures.js	Define an APIFeatures class to handle URL query and generate MongoDB query string
-./utils/catchAsync.js	Handle asynchronous promise rejection error
-./utils/email.js	Define an email class 
-./app.js	Set up middlewares and Express router 
-./server.js	Set up the web server and database connection
-./config.env	Store configuration variables
+|./controller/authController.js |	Handle authentication logic |
+|./controller/errorController.js |	Handle error controller |
+|./controller/reviewController.js |	Handle review logic  |
+|./controller/tourBookingController.js |	Handle tour booking logic | 
+|./controller/tourController.js |	Handle tour logic |
+|./controller/userController.js |	Handle user logic |
+|./controller/viewController.js	Handle the logic of webpage rendering
+|./controller/handlerFactory.js	Handle the factory design pattern
+|./models/bookingModel.js	Define booking schema
+|./models/reviewModel.js	Define review schema
+|./models/tourModel.js	Define tour schema
+|./models/userModel.js	Define user schema
+|./routes/reviewRoutes.js	Define routes and endpoints for review
+|./routes/tourBookingRoutes.js	Define routes and endpoints for booking
+|./routes/tourRoutes.js	Define routes and endpoints for tour
+|./routes/userRoutes.js	Define routes and endpoints for user
+|./routes/viewRoutes.js	Define routes and endpoints for frontend view
+|./utils/appError.js	Define an extended error class
+|./utils/apiFeatures.js	Define an APIFeatures class to handle URL query and generate MongoDB query string
+|./utils/catchAsync.js	Handle asynchronous promise rejection error
+|./utils/email.js	Define an email class 
+|./app.js	Set up middlewares and Express router 
+|./server.js	Set up the web server and database connection
+|./config.env	Store configuration variables
 
 
 
