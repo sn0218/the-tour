@@ -110,7 +110,8 @@ https://documenter.getpostman.com/view/23277889/2s8YsxuB4J
 
 | Path     | Component function |
 | ----------- | ----------- |
-
+| Header      | Title       |
+| Paragraph   | Text        |
 |./controller/authController.js |	Handle authentication logic |
 |./controller/errorController.js |	Handle error controller |
 |./controller/reviewController.js |	Handle review logic  |
@@ -134,7 +135,7 @@ https://documenter.getpostman.com/view/23277889/2s8YsxuB4J
 |./utils/email.js |	Define an email class |
 |./app.js |	Set up middlewares and Express router |
 |./server.js |	Set up the web server and database connection |
-|./config.env | 	Store configuration variables |
+|./config.env | 	Store configuration variables 
 
 
 
