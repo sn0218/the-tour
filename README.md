@@ -14,6 +14,8 @@
 The Tour is a fully-fledged web application designed for persons who love travelling and provides an online platform for them to explore and book sightseeing tours. A sightseeing tour takes tourists on a themed adventure by visiting different locations. A visiting user who does not have an account on the app can view all the tours and detailed information about each tour. Once registered or logged in, an authenticated user can book any tour that they desire. An authenticated user can also write a review and give a rating to the tour. 
 
 ## Getting Started 
+
+### Installation guide
 Your local machine must be installed with Node.js. If not, download LTS version in https://nodejs.org/en/.  
 Navigate to the root file of the application in the command-line interface. The root folder name is “tour_app”.  
 To run the application in a local machine, run the following commands in the root folder path.
@@ -39,6 +41,33 @@ npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-confi
 
 ```
 The application will be available on http://127.0.0.1:3000/.
+
+### Set up local environment
+In /.config.env, you can set up accounts with MongoDB, Stripe, sendGrip and mailGrip.
+
+```
+NODE_ENV=development
+PORT=3000
+DATABASE=
+DATABASE_PASSWORD=
+
+JWT_SECRET=
+JWT_EXPIRES_IN=90d
+JWT_COOKIE_EXPIRES_IN=90
+
+EMAIL_USERNAME=
+EMAIL_PASSWORD=
+EMAIL_HOST=smtp.mailtrap.io
+EMAIL_PORT=2525
+
+EMAIL_FROM=
+
+SENDGRID_USERNAME=apikey
+SENDGRID_PASSWORD=
+
+STRIPE_SECRET_KEY=
+
+```
 
 ## Tech Stack
 -   JavaScript
