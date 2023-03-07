@@ -111,7 +111,6 @@ https://documenter.getpostman.com/view/23277889/2s8YsxuB4J
 | Path     | Component function |
 | ----------- | ----------- |
 | Header      | Title       |
-| Paragraph   | Text        |
 |./controller/authController.js |	Handle authentication logic |
 |./controller/errorController.js |	Handle error controller |
 |./controller/reviewController.js |	Handle review logic  |
