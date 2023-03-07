@@ -72,7 +72,26 @@ The data model consists of 4 schemas: tours, reviews, bookings and users. Tours 
 ### Data model
 ![image](https://user-images.githubusercontent.com/48129546/223294454-2f6b28ab-80c4-44a6-8147-c890165d855b.png)
 
+## User manual
 
+### Book a tour
+Register an account and then log in to the website.  
+View the tour and click the tour that you want to book.  
+Click the book button to book a tour.  
+Proceed to the payment page.  
+Enter the credit card data.  
+- Card No. : 4242 4242 4242 4242
+- Expiry date: 04 / 24
+- CVV: 424
+Finish the booking and transaction.  
+
+
+### API documentation
+The API documentation of this web application is created via Postman. It is published online.  
+
+The URL for the API documentation:  
+https://documenter.getpostman.com/view/23277889/2s8YsxuB4J
 
 
 ## Contained Files
+
