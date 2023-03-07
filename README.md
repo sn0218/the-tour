@@ -108,7 +108,10 @@ https://documenter.getpostman.com/view/23277889/2s8YsxuB4J
 - ./dev-data: contain all data for development
 - ./public: contain all statics files including image, CSS stylesheet and frontend JavaScript
 
-|  Path | Component function  |
+| Path     | Component function |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
 ./controller/authController.js	Handle authentication logic
 ./controller/errorController.js	Handle error controller
 ./controller/reviewController.js	Handle review logic 
